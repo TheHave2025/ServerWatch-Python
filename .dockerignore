@@ -1,0 +1,14 @@
+.git
+.github
+.venv
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+*.db
+.env
+.env.*
+__pycache__
+.pytest_cache
+src/*.egg-info
+build
+dist

@@ -1,0 +1,29 @@
+[Unit]
+Description=ServerWatch-Python - monitor local con alertas Telegram
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=serverwatch
+Group=serverwatch
+WorkingDirectory=/opt/serverwatch-python
+EnvironmentFile=/opt/serverwatch-python/.env
+ExecStart=/opt/serverwatch-python/.venv/bin/serverwatch watch --quiet
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=10
+
+# Permisos mínimos: solo lectura del sistema y sin privilegios añadidos.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

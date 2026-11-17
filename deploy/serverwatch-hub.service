@@ -1,0 +1,27 @@
+[Unit]
+Description=ServerWatch 2.0 dashboard central
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=serverwatch
+Group=serverwatch
+WorkingDirectory=/opt/serverwatch-python
+EnvironmentFile=/opt/serverwatch-python/.env
+ExecStart=/opt/serverwatch-python/.venv/bin/serverwatch dashboard
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/serverwatch
+ProtectHome=true
+PrivateTmp=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target
